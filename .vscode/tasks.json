@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build and Run Service Noti Example",
+			"type": "shell",
+			"command": "cd packages/service_noti/example && flutter clean && flutter pub get && flutter run",
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": [
+				"$dart-flutter"
+			]
+		}
+	]
+}
