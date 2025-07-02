@@ -11,12 +11,10 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 
-/** ServiceNotiPlugin */
 class ServiceNotiPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
   private lateinit var context: Context
   
-  // Service classes được register từ MainActivity
   private var backgroundServiceClass: Class<out Service>? = null
   private var foregroundServiceClass: Class<out Service>? = null
   
@@ -24,9 +22,6 @@ class ServiceNotiPlugin: FlutterPlugin, MethodCallHandler {
     private const val TAG = "ServiceNotiPlugin"
   }
 
-  /**
-   * Register service classes from MainActivity
-   */
   fun registerServices(
     backgroundServiceClass: Class<out Service>,
     foregroundServiceClass: Class<out Service>

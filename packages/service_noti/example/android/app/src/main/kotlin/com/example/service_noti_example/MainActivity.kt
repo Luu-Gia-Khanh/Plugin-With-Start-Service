@@ -10,7 +10,6 @@ class MainActivity : FlutterActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         
-        // Get the ServiceNotiPlugin instance and register the service classes
         val serviceNotiPlugin = flutterEngine.plugins.get(ServiceNotiPlugin::class.java) as? ServiceNotiPlugin
         serviceNotiPlugin?.registerServices(
             backgroundServiceClass = BackgroundService::class.java,
