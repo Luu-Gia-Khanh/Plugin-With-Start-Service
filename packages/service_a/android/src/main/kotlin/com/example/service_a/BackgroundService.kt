@@ -48,6 +48,7 @@ class BackgroundService : Service() {
     }
 
     private suspend fun startBackgroundWork() {
+        Log.d(TAG, "Background work started HEHE")
         var counter = 0
         while (isRunning) {
             Log.d(TAG, "Background work running... Count: ${++counter}")

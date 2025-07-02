@@ -11,7 +11,25 @@ class MethodChannelService_a extends Service_aPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version = await methodChannel.invokeMethod<String>(
+      'getPlatformVersion',
+    );
     return version;
+  }
+
+  @override
+  Future<String?> startBackgroundService() async {
+    final result = await methodChannel.invokeMethod<String>(
+      'startBackgroundService',
+    );
+    return result;
+  }
+
+  @override
+  Future<String?> stopBackgroundService() async {
+    final result = await methodChannel.invokeMethod<String>(
+      'stopBackgroundService',
+    );
+    return result;
   }
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "280964325169",
+    "project_id": "multiple-listen",
+    "storage_bucket": "multiple-listen.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280964325169:android:745d78776553f1efdf5a10",
+        "android_client_info": {
+          "package_name": "com.example.start_service_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXxzIflPzVucCCZ448FBlKiXD-KnVH-6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

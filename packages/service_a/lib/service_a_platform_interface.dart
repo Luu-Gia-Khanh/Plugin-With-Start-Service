@@ -26,4 +26,16 @@ abstract class Service_aPlatform extends PlatformInterface {
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
+  Future<String?> startBackgroundService() {
+    throw UnimplementedError(
+      'startBackgroundService() has not been implemented.',
+    );
+  }
+
+  Future<String?> stopBackgroundService() {
+    throw UnimplementedError(
+      'stopBackgroundService() has not been implemented.',
+    );
+  }
 }
