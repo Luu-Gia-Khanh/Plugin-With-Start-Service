@@ -9,42 +9,57 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
+import io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
-class MyFirebaseMessagingService : FirebaseMessagingService() {
+class MyFirebaseMessagingService : FlutterFirebaseMessagingService() {
 
     private val TAG = "FCMService"
     private val CHANNEL_ID = "fcm_default_channel"
 
+    override fun onCreate() {
+        super.onCreate()
+        Log.d(TAG, "✅ MyFirebaseMessagingService CREATED")
+    }
+
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        Log.d(TAG, "ON RECEIVED MESSAGE")
-        val autoStart = "true"
-        val serviceType = "background"
-        // Check service type to start
-        // val serviceType = remoteMessage.data["service_type"] ?: "background"
-        // val autoStart = remoteMessage.data["auto_start"] ?: "true"
+        Log.d(TAG, "🔥 ON RECEIVED MESSAGE - Data: ${remoteMessage.data}")
+        Log.d(TAG, "🔥 From: ${remoteMessage.from}")
+        Log.d(TAG, "🔥 Notification: ${remoteMessage.notification}")
+        
+        // ✅ GỌI SUPER TRƯỚC để Flutter nhận background message
+        super.onMessageReceived(remoteMessage)
+        Log.d(TAG, "✅ Called super.onMessageReceived")
+        
+        // ✅ SAU ĐÓ xử lý logic native
+        val serviceType = remoteMessage.data["service_type"] ?: "background"
+        val autoStart = remoteMessage.data["auto_start"] ?: "true"
+        
+        Log.d(TAG, "📋 ServiceType: $serviceType, AutoStart: $autoStart")
+        
         if (autoStart == "true") {
-            Log.d(TAG, "CALL START SERVICE FROM FCM")
+            Log.d(TAG, "🚀 CALL START SERVICE FROM FCM")
             when (serviceType.lowercase()) {
                 "background" -> {
-                    Log.d(TAG, "Starting service_a BackgroundService from FCM")
-                    startServiceA()
+                    Log.d(TAG, "🔧 Starting service_a BackgroundService from FCM")
+                    // startServiceA()
                 }
                 "foreground" -> {
-                    Log.d(TAG, "Starting service_b service from FCM")
+                    Log.d(TAG, "🔧 Starting service_b service from FCM")
                     startServiceB()
                 }
                 else -> {
-                    Log.d(TAG, "Starting default service_a BackgroundService from FCM")
+                    Log.d(TAG, "🔧 Starting default service_a BackgroundService from FCM")
                     startServiceA()
                 }
             }
         }
+        
+        // Tùy chọn: hiển thị notification custom
+        // remoteMessage.notification?.let {
+            // Log.d(TAG, "📱 Message Notification Body: ${it.body}")
+        sendNotification("Notification", "HEHE")
         // }
-        remoteMessage.notification?.let {
-            Log.d(TAG, "Message Notification Body: ${it.body}")
-            sendNotification(it.title ?: "Notification", it.body ?: "")
-        }
     }
 
     override fun onNewToken(token: String) {

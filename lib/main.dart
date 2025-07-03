@@ -4,18 +4,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'firebase_options.dart';
 
-// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-//   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-//   if (message.notification != null) {
-//     print(
-//       'Background message notification: ${message.notification!.title} - ${message.notification!.body}',
-//     );
-//   }
-// }
-
 @pragma('vm:entry-point')
-Future<void> backgroundFirebaseMessagingHandle(RemoteMessage message) async {
-  debugPrint('backgroundFirebaseMessagingHandle: ${message}');
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print('🌙 Background: ${message.notification?.title}');
 }
 
 void main() async {
@@ -23,7 +14,7 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   runApp(const MainApp());
 }

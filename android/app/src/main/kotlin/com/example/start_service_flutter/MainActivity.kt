@@ -6,7 +6,6 @@ import android.util.Log
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
-import com.google.firebase.messaging.FirebaseMessaging
 import com.example.service_noti.ServiceNotiPlugin
 
 
@@ -79,13 +78,5 @@ class MainActivity : FlutterActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseMessaging.getInstance().subscribeToTopic("general")
-            .addOnCompleteListener { task ->
-                var msg = "Subscribed to general topic"
-                if (!task.isSuccessful) {
-                    msg = "Subscribe failed"
-                }
-                Log.d(TAG, msg)
-            }
     }
 }
